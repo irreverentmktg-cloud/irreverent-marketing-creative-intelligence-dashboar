@@ -87,6 +87,7 @@ Claude skills powering this pipeline:
 | `forge` | "run FORGE" | Generate ad creative variants via fal.ai |
 | `publisher` | "run PUBLISHER" | Push creatives live to Meta Ads Manager |
 | `looper` | "run LOOPER" | Score live ads & close the feedback loop |
+| `council-team` | "run COUNCIL" | Assemble 5-persona expert panel to review creatives, briefs, or performance |
 | `creative-machine` | "iterate on this ad" | Systematic creative variation (10 variants) |
 | `creator-discovery` | "find influencers" | Source & vet UGC creators |
 | `canvas-design` | "make a design/poster" | Static visual design output |
@@ -134,6 +135,7 @@ performance/     → [campaign]-scores-[YYYY-MM-DD].json
 | Date | Action | Author |
 |------|--------|--------|
 | 2026-04-14 | Repo initialized with pipeline structure | Claude + Jake |
+| 2026-04-21 | Added `council-team` skill + brand reference files | Claude |
 
 ---
 
