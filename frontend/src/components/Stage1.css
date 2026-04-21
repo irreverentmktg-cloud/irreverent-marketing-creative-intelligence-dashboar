@@ -1,0 +1,66 @@
+.stage {
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.stage-title {
+  margin: 0;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  background: #f8f8f8;
+  border-bottom: 1px solid #e8e8e8;
+  color: #444;
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8e8e8;
+  background: #fafafa;
+}
+
+.tab {
+  padding: 5px 12px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.tab:hover {
+  background: #f0e6ff;
+  border-color: #a78bfa;
+  color: #6d28d9;
+}
+
+.tab.active {
+  background: #6d28d9;
+  border-color: #6d28d9;
+  color: white;
+}
+
+.tab-content {
+  padding: 16px 18px;
+}
+
+.model-name {
+  font-size: 0.75rem;
+  color: #999;
+  margin-bottom: 10px;
+  font-family: monospace;
+}
+
+.response-text {
+  font-size: 0.9rem;
+  line-height: 1.65;
+  color: #333;
+}

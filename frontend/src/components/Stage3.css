@@ -1,0 +1,18 @@
+.stage3 .final-response {
+  padding: 16px 18px;
+}
+
+.chairman-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #6d28d9;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.final-text {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: #222;
+}
