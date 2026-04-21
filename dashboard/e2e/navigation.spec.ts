@@ -60,4 +60,30 @@ test.describe("Navigation", () => {
     await page.goto("/");
     await expect(page).toHaveTitle(/Creative Intelligence Dashboard/);
   });
+
+  // IMPROVEMENT VERIFIED: LOOPER shows last-run date
+  test("each pipeline tool shows a last-run date", async ({ page }) => {
+    await page.goto("/");
+    for (const tool of ["scraper", "forge", "publisher", "looper"]) {
+      const lastRun = page.getByTestId(`pipeline-lastrun-${tool}`);
+      await expect(lastRun).toBeVisible();
+      const text = await lastRun.textContent();
+      expect(text).toMatch(/Last run \d{4}-\d{2}-\d{2}/);
+    }
+  });
+
+  test("LOOPER shows idle status badge", async ({ page }) => {
+    await page.goto("/");
+    const sidebar = page.getByTestId("sidebar");
+    // LOOPER is set to idle (ok: false)
+    const looperSection = sidebar.locator("div").filter({ hasText: "LOOPER" }).first();
+    await expect(looperSection.getByText("idle")).toBeVisible();
+  });
+
+  test("active pipeline tools show active status badge", async ({ page }) => {
+    await page.goto("/");
+    const sidebar = page.getByTestId("sidebar");
+    // At least one "active" badge exists (SCRAPER/FORGE/PUBLISHER are all active)
+    await expect(sidebar.getByText("active").first()).toBeVisible();
+  });
 });

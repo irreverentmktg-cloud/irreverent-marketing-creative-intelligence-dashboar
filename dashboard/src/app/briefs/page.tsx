@@ -1,11 +1,5 @@
 import { briefs } from "@/lib/data";
-import { FileText, CheckCircle, Archive, Target } from "lucide-react";
-
-const statusIcons = {
-  active: { icon: CheckCircle, color: "text-green-400", bg: "bg-green-500/10 border-green-500/20" },
-  template: { icon: FileText, color: "text-blue-400", bg: "bg-blue-500/10 border-blue-500/20" },
-  archived: { icon: Archive, color: "text-gray-400", bg: "bg-gray-500/10 border-gray-700" },
-};
+import { FileText, Target } from "lucide-react";
 
 export default function BriefsPage() {
   const active = briefs.filter((b) => b.status === "active");
@@ -21,22 +15,40 @@ export default function BriefsPage() {
       </div>
 
       <section aria-labelledby="active-briefs" className="mb-8">
-        <h2 id="active-briefs" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        <h2
+          id="active-briefs"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4"
+        >
           Active Briefs ({active.length})
         </h2>
-        <div className="space-y-4">
-          {active.map((brief) => {
-            const { bg } = statusIcons[brief.status];
-            return (
+
+        {active.length === 0 ? (
+          <div
+            data-testid="briefs-active-empty"
+            className="rounded-xl border border-gray-700 bg-gray-800/30 p-10 text-center text-gray-500"
+          >
+            <FileText size={32} className="mx-auto mb-3 text-gray-700" />
+            <p className="text-base">No active briefs</p>
+            <p className="text-sm mt-1">
+              Create a brief and run FORGE to generate your first ad batch
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {active.map((brief) => (
               <div
                 key={brief.id}
                 data-testid={`brief-card-${brief.id}`}
-                className={`rounded-xl border p-5 ${bg}`}
+                className="rounded-xl border border-green-500/20 bg-green-500/10 p-5"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
-                    <h3 className="font-semibold text-white text-lg">{brief.campaign}</h3>
-                    <p className="text-xs text-gray-500 mt-0.5">Created {brief.date}</p>
+                    <h3 className="font-semibold text-white text-lg">
+                      {brief.campaign}
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Created {brief.date}
+                    </p>
                   </div>
                   <span className="text-xs px-2 py-1 rounded bg-green-500/20 text-green-400 border border-green-500/30 shrink-0">
                     active
@@ -57,9 +69,24 @@ export default function BriefsPage() {
                       KPI Targets
                     </p>
                     <div className="flex gap-4 text-sm">
-                      <span className="text-gray-300">ROAS <span className="text-violet-400 font-medium">{brief.kpis.roas}x</span></span>
-                      <span className="text-gray-300">CTR <span className="text-violet-400 font-medium">{brief.kpis.ctr}%</span></span>
-                      <span className="text-gray-300">CPC <span className="text-violet-400 font-medium">${brief.kpis.cpc}</span></span>
+                      <span className="text-gray-300">
+                        ROAS{" "}
+                        <span className="text-violet-400 font-medium">
+                          {brief.kpis.roas}x
+                        </span>
+                      </span>
+                      <span className="text-gray-300">
+                        CTR{" "}
+                        <span className="text-violet-400 font-medium">
+                          {brief.kpis.ctr}%
+                        </span>
+                      </span>
+                      <span className="text-gray-300">
+                        CPC{" "}
+                        <span className="text-violet-400 font-medium">
+                          ${brief.kpis.cpc}
+                        </span>
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -68,10 +95,19 @@ export default function BriefsPage() {
                   <p className="text-xs font-medium text-gray-500 uppercase tracking-wide mb-2">
                     Hooks ({brief.hooks.length})
                   </p>
-                  <ul className="space-y-1" data-testid={`brief-hooks-${brief.id}`}>
+                  <ul
+                    className="space-y-1"
+                    data-testid={`brief-hooks-${brief.id}`}
+                  >
                     {brief.hooks.map((hook, i) => (
-                      <li key={i} className="flex items-start gap-2 text-sm text-gray-300">
-                        <Target size={12} className="text-violet-400 mt-0.5 shrink-0" />
+                      <li
+                        key={i}
+                        className="flex items-start gap-2 text-sm text-gray-300"
+                      >
+                        <Target
+                          size={12}
+                          className="text-violet-400 mt-0.5 shrink-0"
+                        />
                         {hook}
                       </li>
                     ))}
@@ -80,46 +116,72 @@ export default function BriefsPage() {
 
                 {brief.forgeRun && (
                   <p className="text-xs text-gray-500 mt-4">
-                    Last FORGE run: <span className="text-gray-400">{brief.forgeRun}</span>
+                    Last FORGE run:{" "}
+                    <span className="text-gray-400">{brief.forgeRun}</span>
                   </p>
                 )}
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
 
       <section aria-labelledby="templates-heading">
-        <h2 id="templates-heading" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        <h2
+          id="templates-heading"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4"
+        >
           Templates ({templates.length})
         </h2>
-        <div className="space-y-4">
-          {templates.map((brief) => (
-            <div
-              key={brief.id}
-              data-testid={`brief-card-${brief.id}`}
-              className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-5"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="font-semibold text-white">{brief.campaign}</h3>
-                  <p className="text-xs text-gray-500 mt-0.5">Template</p>
+
+        {templates.length === 0 ? (
+          <div
+            data-testid="briefs-templates-empty"
+            className="rounded-xl border border-gray-700 bg-gray-800/30 p-10 text-center text-gray-500"
+          >
+            <FileText size={32} className="mx-auto mb-3 text-gray-700" />
+            <p className="text-base">No templates yet</p>
+            <p className="text-sm mt-1">
+              Save a brief as a template to reuse it across campaigns
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {templates.map((brief) => (
+              <div
+                key={brief.id}
+                data-testid={`brief-card-${brief.id}`}
+                className="rounded-xl border border-blue-500/20 bg-blue-500/5 p-5"
+              >
+                <div className="flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="font-semibold text-white">
+                      {brief.campaign}
+                    </h3>
+                    {/* Distinct from badge: shows creation date, not status */}
+                    <p className="text-xs text-gray-500 mt-0.5">
+                      Saved {brief.date}
+                    </p>
+                  </div>
+                  <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 shrink-0">
+                    template
+                  </span>
                 </div>
-                <span className="text-xs px-2 py-1 rounded bg-blue-500/20 text-blue-400 border border-blue-500/30 shrink-0">
-                  template
-                </span>
+                <p className="text-sm text-gray-300 mt-3">{brief.objective}</p>
+                <ul className="mt-3 space-y-1">
+                  {brief.hooks.map((hook, i) => (
+                    <li
+                      key={i}
+                      className="text-sm text-gray-400 flex items-start gap-2"
+                    >
+                      <span className="text-blue-400">·</span> {hook}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <p className="text-sm text-gray-300 mt-3">{brief.objective}</p>
-              <ul className="mt-3 space-y-1">
-                {brief.hooks.map((hook, i) => (
-                  <li key={i} className="text-sm text-gray-400 flex items-start gap-2">
-                    <span className="text-blue-400">·</span> {hook}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );

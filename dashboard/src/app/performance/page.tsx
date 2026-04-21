@@ -1,20 +1,59 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { weeklyReports, performanceScores, kpiTargets } from "@/lib/data";
 import MetricCard from "@/components/MetricCard";
-import {
-  LineChart,
-  Line,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-  ReferenceLine,
-  Legend,
-} from "recharts";
+import { BarChart2 } from "lucide-react";
+
+const RoasChart = dynamic(
+  () => import("@/components/PerformanceCharts").then((m) => m.RoasChart),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        data-testid="roas-chart"
+        className="bg-gray-800/50 border border-gray-700 rounded-xl p-5 flex items-center justify-center"
+        style={{ height: 280 }}
+      >
+        <p className="text-sm text-gray-500">Loading chart…</p>
+      </div>
+    ),
+  }
+);
+
+const CtrCpcChart = dynamic(
+  () => import("@/components/PerformanceCharts").then((m) => m.CtrCpcChart),
+  {
+    ssr: false,
+    loading: () => (
+      <div
+        data-testid="ctr-cpc-chart"
+        className="bg-gray-800/50 border border-gray-700 rounded-xl p-5 flex items-center justify-center"
+        style={{ height: 280 }}
+      >
+        <p className="text-sm text-gray-500">Loading chart…</p>
+      </div>
+    ),
+  }
+);
 
 export default function PerformancePage() {
+  if (weeklyReports.length === 0) {
+    return (
+      <div data-testid="performance-page">
+        <h1 className="text-2xl font-bold text-white mb-6">Performance</h1>
+        <div
+          data-testid="performance-empty"
+          className="flex flex-col items-center justify-center py-24 text-gray-500"
+        >
+          <BarChart2 size={40} className="mb-4 text-gray-700" />
+          <p className="text-lg">No performance data yet</p>
+          <p className="text-sm mt-1">Run LOOPER after 48–72 hours to score live ads</p>
+        </div>
+      </div>
+    );
+  }
+
   const latest = weeklyReports[weeklyReports.length - 1];
   const prev = weeklyReports[weeklyReports.length - 2];
 
@@ -36,7 +75,10 @@ export default function PerformancePage() {
       </div>
 
       <section aria-labelledby="perf-kpis" className="mb-8">
-        <h2 id="perf-kpis" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3">
+        <h2
+          id="perf-kpis"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-3"
+        >
           Latest Week Summary
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -75,103 +117,34 @@ export default function PerformancePage() {
       </section>
 
       <section aria-labelledby="roas-chart-heading" className="mb-8">
-        <h2 id="roas-chart-heading" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        <h2
+          id="roas-chart-heading"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4"
+        >
           ROAS Trend (6 weeks)
         </h2>
-        <div
-          data-testid="roas-chart"
-          className="bg-gray-800/50 border border-gray-700 rounded-xl p-5"
-          style={{ height: 280 }}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={weeklyReports}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis dataKey="week" tick={{ fill: "#9CA3AF", fontSize: 12 }} />
-              <YAxis
-                tick={{ fill: "#9CA3AF", fontSize: 12 }}
-                domain={[0, "auto"]}
-              />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#1F2937",
-                  border: "1px solid #374151",
-                  borderRadius: 8,
-                  color: "#F9FAFB",
-                }}
-              />
-              <ReferenceLine
-                y={kpiTargets.roas}
-                stroke="#A78BFA"
-                strokeDasharray="4 4"
-                label={{ value: "Target", fill: "#A78BFA", fontSize: 11 }}
-              />
-              <Line
-                type="monotone"
-                dataKey="avgRoas"
-                name="ROAS"
-                stroke="#34D399"
-                strokeWidth={2}
-                dot={{ fill: "#34D399", r: 3 }}
-                activeDot={{ r: 5 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <RoasChart />
       </section>
 
       <section aria-labelledby="ctr-cpc-chart-heading" className="mb-8">
-        <h2 id="ctr-cpc-chart-heading" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        <h2
+          id="ctr-cpc-chart-heading"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4"
+        >
           CTR &amp; CPC Trends (6 weeks)
         </h2>
-        <div
-          data-testid="ctr-cpc-chart"
-          className="bg-gray-800/50 border border-gray-700 rounded-xl p-5"
-          style={{ height: 280 }}
-        >
-          <ResponsiveContainer width="100%" height="100%">
-            <LineChart data={weeklyReports}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-              <XAxis dataKey="week" tick={{ fill: "#9CA3AF", fontSize: 12 }} />
-              <YAxis tick={{ fill: "#9CA3AF", fontSize: 12 }} />
-              <Tooltip
-                contentStyle={{
-                  backgroundColor: "#1F2937",
-                  border: "1px solid #374151",
-                  borderRadius: 8,
-                  color: "#F9FAFB",
-                }}
-              />
-              <Legend wrapperStyle={{ color: "#9CA3AF", fontSize: 12 }} />
-              <Line
-                type="monotone"
-                dataKey="avgCtr"
-                name="CTR %"
-                stroke="#60A5FA"
-                strokeWidth={2}
-                dot={{ fill: "#60A5FA", r: 3 }}
-              />
-              <Line
-                type="monotone"
-                dataKey="avgCpc"
-                name="CPC $"
-                stroke="#F87171"
-                strokeWidth={2}
-                dot={{ fill: "#F87171", r: 3 }}
-              />
-            </LineChart>
-          </ResponsiveContainer>
-        </div>
+        <CtrCpcChart />
       </section>
 
       <section aria-labelledby="top-performers">
-        <h2 id="top-performers" className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4">
+        <h2
+          id="top-performers"
+          className="text-xs font-semibold uppercase tracking-wider text-gray-500 mb-4"
+        >
           Top Performers
         </h2>
         <div className="overflow-x-auto">
-          <table
-            data-testid="top-performers-table"
-            className="w-full text-sm"
-          >
+          <table data-testid="top-performers-table" className="w-full text-sm">
             <thead>
               <tr className="text-xs text-gray-500 border-b border-gray-800">
                 <th className="text-left pb-3 font-medium">Ad ID</th>
@@ -190,25 +163,49 @@ export default function PerformancePage() {
                   data-testid={`top-performer-row-${i}`}
                   className="border-b border-gray-800/50 hover:bg-gray-800/30"
                 >
-                  <td className="py-3 text-gray-400 font-mono text-xs">{score.adId}</td>
+                  <td className="py-3 text-gray-400 font-mono text-xs">
+                    {score.adId}
+                  </td>
                   <td className="py-3 text-gray-300">{score.campaign}</td>
                   <td className="py-3 text-right">
-                    <span className={`font-medium ${score.roas >= kpiTargets.roas ? "text-green-400" : "text-yellow-400"}`}>
+                    <span
+                      className={`font-medium ${
+                        score.roas >= kpiTargets.roas
+                          ? "text-green-400"
+                          : "text-yellow-400"
+                      }`}
+                    >
                       {score.roas}x
                     </span>
                   </td>
                   <td className="py-3 text-right">
-                    <span className={score.ctr >= kpiTargets.ctr ? "text-green-400" : "text-yellow-400"}>
+                    <span
+                      className={
+                        score.ctr >= kpiTargets.ctr
+                          ? "text-green-400"
+                          : "text-yellow-400"
+                      }
+                    >
                       {score.ctr}%
                     </span>
                   </td>
                   <td className="py-3 text-right">
-                    <span className={score.cpc <= kpiTargets.cpc ? "text-green-400" : "text-red-400"}>
+                    <span
+                      className={
+                        score.cpc <= kpiTargets.cpc
+                          ? "text-green-400"
+                          : "text-red-400"
+                      }
+                    >
                       ${score.cpc.toFixed(2)}
                     </span>
                   </td>
-                  <td className="py-3 text-right text-gray-400">${score.spend}</td>
-                  <td className="py-3 text-right text-gray-400">{score.conversions}</td>
+                  <td className="py-3 text-right text-gray-400">
+                    ${score.spend}
+                  </td>
+                  <td className="py-3 text-right text-gray-400">
+                    {score.conversions}
+                  </td>
                 </tr>
               ))}
             </tbody>

@@ -32,7 +32,6 @@ test.describe("Briefs Page", () => {
   });
 
   test("active brief shows objective text", async ({ page }) => {
-    // Active briefs contain detailed objective
     const briefCard = page.getByTestId("brief-card-brief-001");
     await expect(briefCard).toBeVisible();
     const text = await briefCard.textContent();
@@ -63,7 +62,6 @@ test.describe("Briefs Page", () => {
   test("template briefs show template badge", async ({ page }) => {
     const templateCard = page.getByTestId("brief-card-brief-tpl-001");
     await expect(templateCard).toBeVisible();
-    // Badge uses lowercase "template" — use exact + span locator to avoid matching subtitle
     await expect(templateCard.locator("span").getByText("template", { exact: true })).toBeVisible();
   });
 
@@ -72,7 +70,6 @@ test.describe("Briefs Page", () => {
     await expect(briefCard.getByText("active")).toBeVisible();
   });
 
-  // BUG CHECK: FORGE run date should only appear when present
   test("brief with forge run shows run date", async ({ page }) => {
     const briefCard = page.getByTestId("brief-card-brief-001");
     await expect(briefCard.getByText(/Last FORGE run/)).toBeVisible();
@@ -82,5 +79,22 @@ test.describe("Briefs Page", () => {
     const briefCard = page.getByTestId("brief-card-brief-002");
     const text = await briefCard.textContent();
     expect(text).not.toContain("Last FORGE run");
+  });
+
+  // FIX VERIFIED: template subtitle now shows date, not duplicate "Template" text
+  test("template card subtitle shows saved date, not duplicate Template label", async ({ page }) => {
+    const templateCard = page.getByTestId("brief-card-brief-tpl-001");
+    // Subtitle should be "Saved YYYY-MM-DD" rather than just "Template"
+    await expect(templateCard.getByText(/Saved \d{4}/)).toBeVisible();
+  });
+
+  // IMPROVEMENT: empty state shown when no active briefs
+  test("active briefs section renders content (not empty state) with data present", async ({ page }) => {
+    // Data exists so empty state should not be visible
+    await expect(page.getByTestId("briefs-active-empty")).not.toBeVisible();
+  });
+
+  test("templates section renders content (not empty state) with data present", async ({ page }) => {
+    await expect(page.getByTestId("briefs-templates-empty")).not.toBeVisible();
   });
 });
