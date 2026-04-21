@@ -1,19 +1,19 @@
-# Skill: Council Team
+# Skill: Marketing Team
 
-**Trigger:** `run COUNCIL` or `council review [input]`  
-**File:** `.claude/commands/council-team.md`
+**Trigger:** `run MARKETING TEAM` or `marketing team review [input]`  
+**File:** `.claude/commands/marketing-team.md`
 
 ---
 
 ## What It Does
 
-The Council Team skill assembles five specialized marketing personas who collaboratively review a piece of work — a creative, brief, or performance dataset — and return a structured verdict with action items.
+The Marketing Team skill assembles five specialized marketing personas who collaboratively review a piece of work — a creative, brief, or performance dataset — and return a structured verdict with action items.
 
-It's the quality gate for the pipeline. Before anything ships (or gets killed), the council reviews it.
+It's the quality gate for the pipeline. Before anything ships (or gets killed), the marketing team reviews it.
 
 ---
 
-## The Five Council Members
+## The Five Team Members
 
 | Member | Role | Primary Lens |
 |--------|------|-------------|
@@ -27,12 +27,12 @@ It's the quality gate for the pipeline. Before anything ships (or gets killed), 
 
 ## When to Use It
 
-| Situation | Use Council |
+| Situation | Use Marketing Team |
 |-----------|-------------|
 | Before shipping a new creative to PUBLISHER | Yes |
 | After FORGE generates variants — picking the best | Yes |
 | When LOOPER flags a creative as a "borderline" performer | Yes |
-| When writing a new campaign brief | Yes (council reviews brief before FORGE runs) |
+| When writing a new campaign brief | Yes (marketing team reviews brief before FORGE runs) |
 | Strategic decisions (UGC vs. studio, new audience segment) | Yes |
 | Routine LOOPER scoring of known metrics | No (data is clear enough) |
 
@@ -43,14 +43,14 @@ It's the quality gate for the pipeline. Before anything ships (or gets killed), 
 | Verdict | Meaning | Next Step |
 |---------|---------|-----------|
 | **SHIP IT** | Majority confidence — deploy or proceed | Tag `[PUBLISHER]` or move brief to `/briefs/active/` |
-| **NEEDS WORK** | Promising but fixable issues identified | Act on action items, then re-council or use judgment |
+| **NEEDS WORK** | Promising but fixable issues identified | Act on action items, then re-review with marketing team or use judgment |
 | **KILL IT** | Fundamental problems — don't ship | Document why in `/performance/archive/`, brief FORGE for replacement |
 
 ---
 
 ## Context Files Referenced
 
-The council reads these files to make grounded judgments. Keep them updated.
+The team reads these files to make grounded judgments. Keep them updated.
 
 | File | Owner | Update Cadence |
 |------|-------|----------------|
@@ -67,19 +67,19 @@ The council reads these files to make grounded judgments. Keep them updated.
 ```
 FORGE generates variants
         ↓
-  run COUNCIL (review variants)
+  run MARKETING TEAM (review variants)
         ↓
    SHIP IT? → PUBLISHER
    NEEDS WORK? → back to FORGE with revised brief
    KILL IT? → archive + new FORGE brief
 ```
 
-The council can also be inserted before FORGE:
+The marketing team can also be inserted before FORGE:
 
 ```
   New campaign idea
         ↓
-  run COUNCIL (review brief)
+  run MARKETING TEAM (review brief)
         ↓
    Brief approved? → FORGE
    Brief needs work? → revise brief
@@ -90,7 +90,7 @@ The council can also be inserted before FORGE:
 ## Example Output
 
 ```
-## Council Review: "Tired of wasting ad spend?" — UGC Hook Variant A
+## Marketing Team Review: "Tired of wasting ad spend?" — UGC Hook Variant A
 Date: 2026-04-21
 
 ---
@@ -109,7 +109,7 @@ CTR benchmark for this persona segment: 2.1% — this should hit it.
 - Red flag: No price anchor — past data shows anchors lift ROAS 0.4x
 - Vote: SHIP IT
 
-[... remaining council members ...]
+[... remaining team members ...]
 
 ---
 
@@ -119,13 +119,13 @@ Strong hook with proven pattern, but visual pacing and missing price anchor need
 ## Action Items
 1. [FORGE] Re-generate B-roll sequence for seconds 2–4 — tighter cuts, more energy
 2. [BRIEF] Add price anchor to CTA — reference dos-donts.md rule #4
-3. [COUNCIL] Re-review after FORGE revision
+3. [MARKETING TEAM] Re-review after FORGE revision
 ```
 
 ---
 
 ## Tips
 
-- The more context you give the council, the better the verdict. Paste the full brief or creative copy rather than summarizing.
+- The more context you give the team, the better the verdict. Paste the full brief or creative copy rather than summarizing.
 - If you're reviewing live performance, include the LOOPER score output.
-- Council verdicts are logged in conversation history — reference them when briefing FORGE.
+- Marketing team verdicts are logged in conversation history — reference them when briefing FORGE.
