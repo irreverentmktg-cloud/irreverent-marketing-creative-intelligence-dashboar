@@ -8,6 +8,19 @@
 
 ---
 
+## CORE POSITIONING LANGUAGE (Locked — use everywhere)
+
+| Line | Use in |
+|---|---|
+| "You don't have a creative problem. You have a visibility problem." | M·00 opener, landing page hero, carousel slide 1 |
+| "Turn customer pain into high-converting creative assets — without guessing." | Primary tagline V2, all listings, email header |
+| "The creative machine that runs on stolen signal." | Brand line, Beehiiv header, social bio |
+| "The market already told you what to make. You just need to know how to read it." | Landing page subhead, email hook |
+| "Stop copying the creative. Steal the structure." | Carousel hook, Reel hook, email subject |
+| "Know what to make before you make it." | Ad hook, LinkedIn hook |
+
+---
+
 ## THE CORE PAIN — "Burning Money Running Blind"
 
 These are the phrases that confirm the offer. Log them. Use them.

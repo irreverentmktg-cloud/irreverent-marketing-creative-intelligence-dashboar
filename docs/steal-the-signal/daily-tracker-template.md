@@ -94,8 +94,13 @@
 - Notable comment:
 - Notable comment:
 
+### Format Intelligence Log (track like Motion — what format is surviving?)
+| Format Type | Video Length | Creative Style | Aspect Ratio | Estimated Age | Notes |
+|---|---|---|---|---|---|
+| static / video / carousel | 0–6s / 7–15s / 16–30s / 31–60s / 60s+ | ugc / studio / talking_head / screen_record / animation | 9:16 / 1:1 / 4:5 | new / surviving / old | |
+
 ### Format That's Winning Today
-(Talking head / B-roll demo / screen record / text hook?)
+(Which format type + creative style combination is appearing most in Steal-tier content?)
 
 ### Instagram/TikTok Signal Score (1–10): ___
 **Why:**

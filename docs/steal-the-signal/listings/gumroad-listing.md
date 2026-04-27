@@ -35,7 +35,7 @@ You scroll a competitor's ad library for an hour. You screenshot three things. Y
 
 That's not intelligence. That's aesthetic tourism.
 
-**Steal the Signal** is the method that turns a free, public database (the Meta Ad Library) into a scored, actionable competitive brief — every week, in 45 minutes, without a single paid spy tool.
+**Steal the Signal** is the creative machine that runs on stolen signal — turning the free, public Meta Ad Library into scored intelligence and production-ready creative briefs, every week, in 45 minutes, without a single paid spy tool.
 
 ---
 
@@ -65,13 +65,15 @@ Once you see it, you can't unsee it.
 
 ### What you'll build
 
-**A populated Swipe Vault** — your own scored database of competitor ads, tagged by hook type, ranked by duration, cross-referenced against landing page offer match.
+**A populated Swipe Vault** — your own scored database of competitor ads, tagged by hook type, format type, creative style, and aspect ratio — ranked by duration, cross-referenced against landing page offer match.
 
-**A scoring framework** — three lenses (duration, variant count, creative clarity) that produce a 0–17 score and four tiers: Steal, Study, Skip, Ignore.
+**A format intelligence layer** — what Motion does with live ROAS data, you'll do with the Ad Library. Know which format (static, video length, UGC vs. studio, 9:16 vs. 1:1) is surviving longest in your category. Brief your creative team with format direction, not just concept direction.
+
+**A scoring framework** — four lenses (duration, variant count, creative clarity, format signal) that produce a 0–20 score and four tiers: Steal, Study, Skip, Ignore.
 
 **A funnel audit method** — the 7-point ad-to-page checklist that catches the conversion bleed everyone else misses.
 
-**A brief template** — 12 fields. Five-part structural DNA extraction. Claude auto-fills 80%. You review, sharpen, ship.
+**A brief template** — 13 fields including format spec. Five-part structural DNA extraction. Claude auto-fills 80%. You review, sharpen, ship.
 
 **A weekly rhythm** — 45 minutes, once a week. That's the whole compounding system.
 

@@ -24,11 +24,11 @@ $97.00
 
 ---
 
-**You don't have a creative problem. You have a visibility problem.**
+**Turn customer pain into high-converting creative assets — without guessing.**
 
-Your competitor's best ad is sitting in the Meta Ad Library right now. Public. Free to access. And most marketers have no idea how to read it.
+Your competitor's best ad is sitting in the Meta Ad Library right now. Public. Free to access. It tells you which hook is working, which format is surviving, and what creative structure to build next.
 
-This field guide fixes that.
+Most marketers can't read it. This field guide teaches you how.
 
 ---
 
@@ -38,10 +38,11 @@ This field guide fixes that.
 
 It teaches you how to:
 - Scrape any competitor's full Meta ad library (no paid tools required)
+- Track format intelligence — which creative format (static, video length, UGC vs. studio, aspect ratio) is surviving the longest in your category, like what Motion does with live ROAS data
 - Build a scored Swipe Vault that tells you which of their ads is actually paying the bills
 - Identify the structural DNA behind winning ads — not the aesthetics, the architecture
 - Audit the full funnel from ad to landing page (the step everyone skips)
-- Convert competitor intelligence into a 12-field creative brief your team or AI pipeline can execute Monday morning
+- Convert competitor intelligence into a 12-field creative brief + format spec your team or AI pipeline can execute Monday morning
 
 ---
 

@@ -606,6 +606,116 @@ Link in bio →
 
 ---
 
+## CAROUSEL 8 — "The Format Intelligence Layer"
+**Theme:** What Motion does with ROAS data, you can do for free
+**Best for:** Instagram, LinkedIn (agency/DTC operator audience)
+**CTA target:** Direct sale
+
+---
+
+**SLIDE 1 (Hook)**
+```
+What format should your next ad be?
+
+Most people guess.
+There's a way to know.
+```
+
+---
+
+**SLIDE 2**
+```
+Motion (the creative analytics tool)
+tells you which ad format drives the best ROAS.
+
+Static image.
+9:16 video.
+UGC.
+Talking head.
+Screen record.
+
+But Motion requires access to your own ad data.
+
+What if you could read your competitor's format signal
+for free?
+```
+
+---
+
+**SLIDE 3**
+```
+The Meta Ad Library shows you
+every active ad's format.
+
+Static or video.
+Short or long.
+UGC or studio.
+9:16 or 1:1.
+
+And it shows you how long each one has been running.
+
+Duration = spend proxy.
+Format + duration = what format is winning.
+```
+
+---
+
+**SLIDE 4**
+```
+Here's how to read it:
+
+→ Filter to Active. Sort by Oldest.
+→ What format do the oldest ads use?
+→ Is it UGC 9:16 video? Static carousel? Talking head?
+
+If 8 of your competitor's 10 oldest ads
+are 7–15s UGC 9:16 videos —
+
+the category is telling you what to make.
+```
+
+---
+
+**SLIDE 5**
+```
+The four format questions to ask every week:
+
+1. What FORMAT TYPE is surviving? (static / video / carousel)
+2. What VIDEO LENGTH? (0–6s / 7–15s / 16–30s / 30–60s)
+3. What CREATIVE STYLE? (ugc / studio / talking head / screen record)
+4. What ASPECT RATIO? (9:16 / 1:1 / 4:5)
+
+That's your creative brief.
+No ROAS data required.
+```
+
+---
+
+**SLIDE 6**
+```
+Stop guessing what to make.
+
+The market already voted
+on which format to use.
+
+You just needed to know how to read the ballot.
+```
+
+---
+
+**SLIDE 7 (CTA)**
+```
+This is inside Steal the Signal —
+the format intelligence layer of the Swipe Vault.
+
+Turn customer pain into high-converting creative.
+Without guessing.
+
+$97. Link in bio →
+```
+
+---
+
 ## POSTING SCHEDULE — Week 1
 
 | Day | Carousel | Platform(s) |
@@ -617,6 +727,18 @@ Link in bio →
 | Friday | Carousel 5 — The Funnel Nobody Audits | Instagram + LinkedIn |
 | Saturday | Carousel 6 — Why Your Creative Keeps Dying | Instagram + TikTok |
 | Sunday | Rest / repurpose best-performing slide as standalone |
+
+## POSTING SCHEDULE — Week 2
+
+| Day | Carousel | Platform(s) |
+|---|---|---|
+| Monday | Carousel 8 — The Format Intelligence Layer | Instagram + LinkedIn |
+| Tuesday | Carousel 7 — 45 Minutes a Week | Instagram + TikTok |
+| Wednesday | Repurpose Carousel 1 best slide as standalone | Instagram |
+| Thursday | New research finding from daily tracker → carousel | Instagram + TikTok |
+| Friday | Carousel from VOC language — "burned $3k" angle | Instagram + LinkedIn |
+| Saturday | Behind the scenes: Jake building the vault live | TikTok + Instagram |
+| Sunday | Rest |
 
 ---
 
