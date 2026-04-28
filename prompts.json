@@ -1,0 +1,21 @@
+[
+  "Build the homepage hero section for Cited AEO. It should have a bold headline like 'Own the Answer Engine Results', a subheadline explaining that Cited AEO helps brands appear in AI-generated answers (ChatGPT, Perplexity, Google AI Overviews), and a primary CTA button 'Get Cited Now'. Use a dark navy and electric blue color scheme with a clean, modern SaaS look.",
+
+  "Add a 'How It Works' section below the hero with 3 numbered steps: 1) Audit — we scan your content and identify AEO gaps, 2) Optimize — we restructure your content for AI answer engines, 3) Get Cited — your brand appears in AI-generated answers. Use icons and short descriptions for each step.",
+
+  "Create a Features section showcasing Cited AEO's core capabilities: AI Citation Tracking (monitor when and where your brand is cited in AI answers), Content AEO Scoring (get a score for how AEO-ready each page is), Competitor Citation Analysis (see where competitors are cited and you aren't), and Automated Content Recommendations (AI-driven suggestions to increase citations).",
+
+  "Add a social proof section with 3 customer testimonials. Use placeholder names like 'Sarah M., Head of SEO at TechCorp', 'James R., CMO at GrowthBrand', and 'Priya K., Content Director at ScaleUp'. Each testimonial should highlight results like increased AI citations, better visibility in ChatGPT answers, and improved AEO scores.",
+
+  "Build a Pricing section with 3 tiers: Starter ($299/mo — up to 50 tracked queries, 1 domain, monthly AEO report), Growth ($799/mo — up to 200 tracked queries, 3 domains, weekly reports, competitor analysis), and Enterprise (Custom — unlimited queries, unlimited domains, dedicated AEO strategist). Add a 'Most Popular' badge to Growth.",
+
+  "Create an FAQ section with 8 questions covering: What is AEO?, How is AEO different from SEO?, Which AI engines do you track?, How long until I see results?, Do you write content for me?, What data do you need to get started?, Is there a free trial?, and How do I cancel?",
+
+  "Add a final CTA section at the bottom of the page above the footer with the headline 'Start Getting Cited in AI Answers Today', a short paragraph, email capture input, and a 'Request Early Access' button. Include a note like 'No credit card required. Setup in 48 hours.'",
+
+  "Build the website footer with: logo and tagline on the left, navigation links (Home, Features, Pricing, Blog, Contact), social media icons (LinkedIn, Twitter/X), legal links (Privacy Policy, Terms of Service), and a copyright line. Keep it clean and minimal.",
+
+  "Add a sticky navigation header with the Cited AEO logo on the left, nav links (Features, How It Works, Pricing, FAQ) in the center, and a 'Get Started' CTA button on the right. It should become slightly frosted/blurred on scroll.",
+
+  "Polish the entire site: ensure all sections are responsive on mobile, add smooth scroll behavior, add subtle entrance animations (fade-in on scroll) for each section, ensure consistent typography and spacing throughout, and fix any alignment or color inconsistencies."
+]
