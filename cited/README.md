@@ -1,78 +1,69 @@
-# Cited — AEO Platform UI
+# Cited
 
-Marketing site + product UI shell for **Cited**, the Answer Engine Optimization platform.
+Answer Engine Optimization for DTC brands. Tells you which AI models are
+citing you, which prompts you're invisible in, and what to do about it.
 
-This is the Lovable-replacement build: the eight screens from the brief, all wired together as a Vite + React + TypeScript + Tailwind app. No backend yet — that's Claude (Cowork)'s job per the brief.
+## Layout
 
-## Stack
+This is an npm workspaces monorepo:
 
-- Vite 5 + React 18 + TypeScript
-- Tailwind CSS 3
-- React Router 6
-- lucide-react (icons)
-- Inter + DM Mono via Google Fonts
+```
+cited/
+  web/          React + Vite + Tailwind frontend
+  server/       Hono + TypeScript API
+  shared/       Types shared between web and server
+```
 
-## Run it
+## Run it locally
+
+You need Node 18+ and an Anthropic API key.
 
 ```bash
 cd cited
-npm install
-npm run dev
+npm install                       # installs web, server, shared together
+cp server/.env.example server/.env
+# edit server/.env — set ANTHROPIC_API_KEY at minimum
+
+# in one terminal:
+npm run dev:server                # http://localhost:8787
+
+# in another:
+npm run dev:web                   # http://localhost:5173
 ```
 
-Open http://localhost:5173.
+The web dev server proxies `/api/*` to the API server, so you can hit
+`http://localhost:5173/` and the whole stack works end-to-end.
 
-## Build
+## What works today
 
-```bash
-npm run build      # outputs to dist/
-npm run preview    # serves the production build
-npm run typecheck
-```
+- **`POST /api/analyze`** — scrapes a URL, asks Claude to extract
+  product/category/claims/buyer/price/differentiator
+- **`POST /api/brands`** — confirms calibration, generates a 50-prompt list
+  with Claude, runs the first score cycle
+- **`GET /api/brands/:id`** — current score + prompts with per-platform
+  citation status
+- **`POST /api/brands/:id/refresh`** — re-runs the score cycle
 
-## Routes
+The Claude provider runs against Claude Opus 4.7 with the web search tool. The
+ChatGPT, Perplexity, and Gemini providers are stubs that report
+`available: false` until you wire their API keys — drop the implementation
+into `server/src/lib/providers/` and they'll activate.
 
-| Route | Screen |
-|---|---|
-| `/` | Landing |
-| `/analyzing` | Analyzing transition |
-| `/calibration` | Brand Calibration (onboarding 1) |
-| `/score-reveal` | First Score Reveal (onboarding 2) |
-| `/dashboard` | Dashboard · Overview |
-| `/dashboard/prompts` | Dashboard · Prompts feed |
-| `/dashboard/competitors` | Dashboard · Competitors |
-| `/dashboard/settings` | Dashboard · Settings |
+## What's not built yet
 
-The flow on the landing page (URL input → Analyzing → Calibration → Score Reveal → Dashboard) is wired end-to-end so you can demo it.
+- Persistent storage. The server runs in **memory mode** by default; data is
+  lost on restart. Once you set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`
+  it'll switch to Postgres, but the SupabaseRepo methods need to be filled in
+  — see `server/src/db/repo.ts`.
+- Auth. Endpoints are open. Add Supabase auth or a session token before
+  shipping.
+- Nightly cron. The runner exists; wire `POST /api/brands/:id/refresh` to a
+  Railway cron schedule.
+- Competitor extraction. Provider results return an empty `competitorBrands`
+  array — needs a Claude post-processing step.
 
-## Design tokens
+## Deploy
 
-Defined in `tailwind.config.js`:
-
-- Monochrome palette: `ink`, `rich`, `mid`, `silver`, `line`, `offwhite`
-- Score colors (only used on score rings, score numbers, status pills): `score.critical` / `score.warning` / `score.good`
-- Chrome gradient: `bg-chrome` (buttons), `chrome-text` utility (gradient text)
-- Card shadow utility: `shadow-card`
-- Shimmer keyframe: `chrome-shimmer-bar` class in `index.css`
-
-Fonts: `font-sans` (Inter) and `font-mono` (DM Mono).
-
-## Components
-
-`src/components/` contains the reusable building blocks:
-
-- `Button` — primary / chrome / ghost variants
-- `Logo` — Cited wordmark with chrome-gradient period
-- `ScoreRing` — animated SVG ring, color-coded by tier
-- `PlatformDots` — ChatGPT / Perplexity / Gemini / Claude cited indicators
-- `SuggestionCard` — the vidIQ-style daily prompt card (supports `locked` state)
-- `Nav`, `Footer` — landing chrome
-- `Sidebar`, `DashboardLayout` — logged-in shell
-- `UrlInput` — hero CTA
-
-## What's intentionally faked
-
-- All data is hard-coded sample data (Bloom Collagen as the demo brand).
-- "Sign in" / "Start free" jump straight to the dashboard.
-- The analyzing screen is a 4-second timed sequence, not a real scrape.
-- No auth, no Supabase, no API. The brief calls those out as Claude (Cowork) backend work.
+Server target: Railway (or Fly, or Render). Set the env vars from
+`server/.env.example` and deploy `server/`. Web can ship to Vercel or
+Netlify; point its `/api/*` to the server's public URL.
