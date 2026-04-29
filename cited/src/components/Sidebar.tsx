@@ -88,7 +88,7 @@ export function Sidebar({
         </div>
         <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line">
           <div
-            className="h-full rounded-full bg-ink transition-all"
+            className="chrome-fill h-full rounded-full transition-all"
             style={{ width: `${planPct}%` }}
           />
         </div>
