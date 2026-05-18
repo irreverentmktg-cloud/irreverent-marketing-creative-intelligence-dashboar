@@ -5,6 +5,7 @@ import {
   spring,
   useCurrentFrame,
   useVideoConfig,
+  Video,
 } from "remotion";
 
 export interface KineticTextProps {
@@ -13,6 +14,7 @@ export interface KineticTextProps {
   backgroundColor: string;
   textColor: string;
   highlightIndices?: number[];
+  backgroundVideoSrc?: string;
 }
 
 export const kineticTextDefaultProps: KineticTextProps = {
@@ -31,6 +33,7 @@ export const KineticText: React.FC<KineticTextProps> = ({
   backgroundColor,
   textColor,
   highlightIndices = [],
+  backgroundVideoSrc,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -40,13 +43,28 @@ export const KineticText: React.FC<KineticTextProps> = ({
       style={{
         backgroundColor,
         fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "0 80px",
-        gap: 24,
       }}
     >
+      {backgroundVideoSrc && (
+        <AbsoluteFill>
+          <Video
+            src={backgroundVideoSrc}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </AbsoluteFill>
+      )}
+      {backgroundVideoSrc && (
+        <AbsoluteFill style={{ backgroundColor: "rgba(0,0,0,0.6)" }} />
+      )}
+      <AbsoluteFill
+        style={{
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          padding: "0 80px",
+          gap: 24,
+        }}
+      >
       {lines.map((line, i) => {
         const startFrame = i * FRAMES_PER_LINE;
         const opacity = interpolate(frame, [startFrame, startFrame + 15], [0, 1], {
@@ -109,6 +127,7 @@ export const KineticText: React.FC<KineticTextProps> = ({
           </div>
         );
       })}
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

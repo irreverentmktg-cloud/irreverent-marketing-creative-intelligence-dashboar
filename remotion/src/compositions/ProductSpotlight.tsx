@@ -6,6 +6,7 @@ import {
   spring,
   useCurrentFrame,
   useVideoConfig,
+  Video,
 } from "remotion";
 
 export interface ProductSpotlightProps {
@@ -17,6 +18,7 @@ export interface ProductSpotlightProps {
   accentColor: string;
   textColor: string;
   badgeText?: string;
+  backgroundVideoSrc?: string;
 }
 
 export const productSpotlightDefaultProps: ProductSpotlightProps = {
@@ -39,6 +41,7 @@ export const ProductSpotlight: React.FC<ProductSpotlightProps> = ({
   accentColor,
   textColor,
   badgeText,
+  backgroundVideoSrc,
 }) => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
@@ -92,18 +95,33 @@ export const ProductSpotlight: React.FC<ProductSpotlightProps> = ({
   });
 
   return (
-    <AbsoluteFill
-      style={{
-        backgroundColor,
-        opacity: bgOpacity,
-        fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        gap: 48,
-        padding: 80,
-      }}
-    >
+    <AbsoluteFill style={{ fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif" }}>
+      {/* Background layer */}
+      {backgroundVideoSrc ? (
+        <AbsoluteFill>
+          <Video
+            src={backgroundVideoSrc}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </AbsoluteFill>
+      ) : (
+        <AbsoluteFill style={{ backgroundColor }} />
+      )}
+      {backgroundVideoSrc && (
+        <AbsoluteFill style={{ backgroundColor: "rgba(0,0,0,0.45)" }} />
+      )}
+
+      {/* Content layer with fade-in */}
+      <AbsoluteFill
+        style={{
+          opacity: bgOpacity,
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: 48,
+          padding: 80,
+        }}
+      >
       {/* Product image */}
       <div
         style={{
@@ -208,6 +226,7 @@ export const ProductSpotlight: React.FC<ProductSpotlightProps> = ({
           {ctaText}
         </div>
       </div>
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };

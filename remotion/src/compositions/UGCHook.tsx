@@ -5,6 +5,7 @@ import {
   spring,
   useCurrentFrame,
   useVideoConfig,
+  Video,
 } from "remotion";
 
 export interface UGCHookProps {
@@ -14,6 +15,7 @@ export interface UGCHookProps {
   backgroundColor: string;
   accentColor: string;
   textColor: string;
+  backgroundVideoSrc?: string;
 }
 
 export const ugcHookDefaultProps: UGCHookProps = {
@@ -32,6 +34,7 @@ export const UGCHook: React.FC<UGCHookProps> = ({
   backgroundColor,
   accentColor,
   textColor,
+  backgroundVideoSrc,
 }) => {
   const frame = useCurrentFrame();
   const { fps, durationInFrames } = useVideoConfig();
@@ -75,6 +78,17 @@ export const UGCHook: React.FC<UGCHookProps> = ({
         fontFamily: "'Inter', 'Helvetica Neue', Arial, sans-serif",
       }}
     >
+      {backgroundVideoSrc && (
+        <AbsoluteFill>
+          <Video
+            src={backgroundVideoSrc}
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </AbsoluteFill>
+      )}
+      {backgroundVideoSrc && (
+        <AbsoluteFill style={{ backgroundColor: "rgba(0,0,0,0.52)" }} />
+      )}
       <AbsoluteFill
         style={{
           background: `linear-gradient(to bottom, transparent 60%, ${accentColor}22 100%)`,
