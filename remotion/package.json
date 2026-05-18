@@ -1,0 +1,25 @@
+{
+  "name": "irreverent-remotion-videos",
+  "version": "1.0.0",
+  "description": "Remotion video compositions for Irreverent Marketing ad creatives",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:ugc": "remotion render src/index.ts UGCHook out/ugc-hook.mp4",
+    "render:product": "remotion render src/index.ts ProductSpotlight out/product-spotlight.mp4",
+    "render:kinetic": "remotion render src/index.ts KineticText out/kinetic-text.mp4",
+    "render:all": "npm run render:ugc && npm run render:product && npm run render:kinetic"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/renderer": "^4.0.0",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.4.0"
+  }
+}
